@@ -66,7 +66,7 @@ function totalSupply() external view override returns (uint256) {
 
 `balanceOf`
 Returns the token balance of a given address.
-```slodity
+```solidity
 function balanceOf(address account) external view override returns (uint256) {
     return BalanceOf[account];
 }
@@ -74,7 +74,7 @@ function balanceOf(address account) external view override returns (uint256) {
 
 `transfer`
 Transfers tokens from the caller's address to another address
-```soldity
+```solidity
 function transfer(address to, uint256 value) external override returns (bool) {
     _transfer(msg.sender, to, value);
     return true;
@@ -83,7 +83,7 @@ function transfer(address to, uint256 value) external override returns (bool) {
 
 `allowance`
 Returns the remaining number of tokens that a spender is allowed to spend on behalf of the owner.
-```soldity
+```solidity
 function allowance(address owner, address spender) external view override returns (uint256) {
     return Allowance[owner][spender];
 }
@@ -91,7 +91,7 @@ function allowance(address owner, address spender) external view override return
 
 `approve`
 Allows a spender to spend a certain number of tokens on behalf of the caller.
-```soldity
+```solidity
 function approve(address spender, uint256 value) external override returns (bool) {
     _approve(msg.sender, spender, value);
     return true;
@@ -100,7 +100,7 @@ function approve(address spender, uint256 value) external override returns (bool
 
 `transferFrom`
 Transfers tokens from one address to another using an allowance.
-```soldity
+```solidity
 function transferFrom(address from, address to, uint256 value) external override returns (bool) {
     _transfer(from, to, value);
     Allowance[from][to] -= value;
@@ -111,7 +111,7 @@ function transferFrom(address from, address to, uint256 value) external override
 Internal Functions
 `_transfer`
 Handles the actual transfer of tokens between addresses.
-```soldity
+```solidity
 function _transfer(address from, address to, uint256 amount) internal {
     require(from != address(0), "You are sending from Invalid address");
     require(to != address(0), "You are sending to Invalid address");
@@ -159,6 +159,10 @@ function _burn(address to, uint256 amount) external {
 
 ### License
 This project is licensed under the MIT License.
+## Author
+My Name - [Pallavi Singh] (anshsingh005171@gmail.com)
+
+---
 
 
 
