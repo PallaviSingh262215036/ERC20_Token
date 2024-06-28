@@ -47,52 +47,75 @@ constructor(string memory _name, string memory _abbrv) {
     Abbrv = _abbrv;
     Owner = msg.sender;
 }
+```
 
- ERC-20 Standard Function
+### Deployment
+
+Deploy the contract by providing the token name, token abbreviation, and initial supply.
+
+```solidity
+Token token = new Token("Earth", "ERT", 100);
+```
+
+ ### ERC-20 Standard Function
 
 `totalSupply`
 Returns the total supply of tokens.
+
+```solidity
 function totalSupply() external view override returns (uint256) {
     return TotalSupply;
 }
+```
 
 `balanceOf`
 Returns the token balance of a given address.
+```slodity
 function balanceOf(address account) external view override returns (uint256) {
     return BalanceOf[account];
 }
+```
 
 `transfer`
 Transfers tokens from the caller's address to another address
+```soldity
 function transfer(address to, uint256 value) external override returns (bool) {
     _transfer(msg.sender, to, value);
     return true;
 }
+```
 
 `allowance`
 Returns the remaining number of tokens that a spender is allowed to spend on behalf of the owner.
+```soldity
 function allowance(address owner, address spender) external view override returns (uint256) {
     return Allowance[owner][spender];
 }
+```
 
 `approve`
 Allows a spender to spend a certain number of tokens on behalf of the caller.
+```soldity
 function approve(address spender, uint256 value) external override returns (bool) {
     _approve(msg.sender, spender, value);
     return true;
 }
+```
 
 `transferFrom`
 Transfers tokens from one address to another using an allowance.
+```soldity
 function transferFrom(address from, address to, uint256 value) external override returns (bool) {
     _transfer(from, to, value);
     Allowance[from][to] -= value;
     return true;
 }
+```
 
 Internal Functions
 `_transfer`
 Handles the actual transfer of tokens between addresses.
+```soldity
 function _transfer(address from, address to, uint256 amount) internal {
     require(from != address(0), "You are sending from Invalid address");
     require(to != address(0), "You are sending to Invalid address");
@@ -102,5 +125,5 @@ function _transfer(address from, address to, uint256 amount) internal {
     BalanceOf[to] += amount;
     emit Transfer(from, to, amount);
 }
-
+```
 
