@@ -53,10 +53,6 @@ constructor(string memory _name, string memory _abbrv) {
 
 Deploy the contract by providing the token name, token abbreviation, and initial supply.
 
-```solidity
-Token token = new Token("Earth", "ERT", 100);
-```
-
  ### ERC-20 Standard Function
 
 `totalSupply`
@@ -126,4 +122,43 @@ function _transfer(address from, address to, uint256 amount) internal {
     emit Transfer(from, to, amount);
 }
 ```
+
+`_approve`
+Handles the approval of allowances for spenders.
+```solidity
+function _approve(address owner, address spender, uint256 value) internal {
+    require(spender != address(0), "You are giving approve to zero address");
+    require(owner != address(0), "owner has zero address");
+    BalanceOf[owner] >= value;
+    Allowance[owner][spender] = value;
+    emit Approval(owner, spender, value);
+}
+```
+
+Minting and Burning Tokens
+`_mint`
+Allows the owner to mint new tokens.
+```solidity
+function _mint(address to, uint256 amount) external {
+    require(msg.sender == Owner, "Only Owner");
+    require(to != address(0), "you are minting to Zero address bro!");
+    BalanceOf[to] += amount;
+    TotalSupply += amount;
+}
+```
+
+`_burn`
+Allows the owner to burn tokens.
+```solidity
+function _burn(address to, uint256 amount) external {
+    require(to != address(0), "you are burning to Zero address bro!");
+    BalanceOf[to] -= amount;
+    TotalSupply -= amount;
+}
+```
+
+### License
+This project is licensed under the MIT License.
+
+
 
