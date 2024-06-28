@@ -48,7 +48,8 @@ constructor(string memory _name, string memory _abbrv) {
     Owner = msg.sender;
 }
 
-### ERC-20 Standard Functions
+ ERC-20 Standard Function
+
 `totalSupply`
 Returns the total supply of tokens.
 function totalSupply() external view override returns (uint256) {
